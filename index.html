@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOSCOPE — Programme ORPHÉE</title>
+    <meta name="description" content="Un projet de recherche ouvert explorant la possibilité d'observer les empreintes temporelles du passé.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --amber-100: #fef3c7;
+            --amber-200: #fde68a;
+            --amber-300: #fcd34d;
+            --amber-400: #fbbf24;
+            --amber-500: #f59e0b;
+            --amber-600: #d97706;
+            --amber-700: #b45309;
+            --amber-800: #92400e;
+            --amber-900: #78350f;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --slate-950: #020617;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Crimson Pro', Georgia, serif;
+            background: linear-gradient(135deg, var(--slate-950) 0%, var(--slate-900) 50%, #1a1a2e 100%);
+            color: var(--slate-200);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        
+        /* Background effects */
+        .bg-effect {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(180, 83, 9, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(120, 53, 15, 0.08) 0%, transparent 50%);
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(245, 158, 11, 0.3);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
+            50% { transform: translateY(-30px) translateX(15px); opacity: 0.5; }
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(180, 83, 9, 0.2);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .nav-brand-icon {
+            font-size: 1.5rem;
+            color: var(--amber-500);
+        }
+        
+        .nav-brand-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--amber-100);
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-brand-sub {
+            font-size: 0.7rem;
+            color: rgba(245, 158, 11, 0.5);
+            letter-spacing: 0.15em;
+            margin-left: 1rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .nav-link {
+            padding: 0.5rem 0.75rem;
+            color: rgba(254, 243, 199, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover {
+            color: var(--amber-200);
+            background: rgba(180, 83, 9, 0.2);
+        }
+        
+        .nav-link-icon {
+            color: rgba(245, 158, 11, 0.5);
+            margin-right: 0.25rem;
+        }
+        
+        .nav-github {
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(180, 83, 9, 0.3);
+            border: 1px solid rgba(180, 83, 9, 0.5);
+            border-radius: 6px;
+            color: var(--amber-200);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        
+        .nav-github:hover {
+            background: rgba(180, 83, 9, 0.5);
+        }
+        
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1.5rem 4rem;
+            z-index: 1;
+        }
+        
+        .hero-bg-symbol {
+            position: absolute;
+            font-size: 40rem;
+            color: rgba(245, 158, 11, 0.03);
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .hero-icon {
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        
+        .hero-icon::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 1px solid rgba(245, 158, 11, 0.1);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0; }
+        }
+        
+        .hero-icon span {
+            font-size: 3.5rem;
+            color: var(--amber-400);
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 300;
+            color: var(--amber-100);
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(252, 211, 77, 0.8);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-tags {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: rgba(245, 158, 11, 0.6);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--slate-400);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .btn-primary {
+            padding: 0.875rem 2rem;
+            background: linear-gradient(135deg, var(--amber-900), var(--amber-800));
+            color: var(--amber-100);
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 20px rgba(180, 83, 9, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--amber-800), var(--amber-700));
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            padding: 0.875rem 2rem;
+            background: transparent;
+            color: var(--amber-200);
+            border: 1px solid rgba(180, 83, 9, 0.5);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(180, 83, 9, 0.2);
+        }
+        
+        .hero-scroll {
+            margin-top: 4rem;
+            color: rgba(245, 158, 11, 0.5);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 1.5rem;
+        }
+        
+        section:nth-child(even) {
+            background: rgba(15, 23, 42, 0.3);
+        }
+        
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .section-wide {
+            max-width: 1200px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-icon {
+            font-size: 2.5rem;
+            color: var(--amber-500);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--amber-100);
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-subtitle {
+            color: rgba(252, 211, 77, 0.6);
+            font-style: italic;
+        }
+        
+        .section-divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--amber-600), transparent);
+            margin: 1.5rem auto 0;
+        }
+        
+        /* Quote block */
+        .quote-block {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(180, 83, 9, 0.2);
+            margin-bottom: 3rem;
+        }
+        
+        .quote-text {
+            font-size: 1.25rem;
+            color: rgba(254, 243, 199, 0.9);
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .quote-source {
+            color: var(--slate-400);
+            font-size: 0.9rem;
+        }
+        
+        /* Content blocks */
+        .content-text {
+            color: var(--slate-300);
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-text strong {
+            color: var(--amber-200);
+        }
+        
+        .content-text em {
+            color: var(--amber-200);
+            font-style: italic;
+        }
+        
+        .content-divider {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .content-divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(180, 83, 9, 0.5), transparent);
+        }
+        
+        .content-divider-icon {
+            color: var(--amber-500);
+            font-size: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--amber-200);
+            margin: 2rem 0 1rem;
+        }
+        
+        .highlight-box {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--amber-600);
+            margin: 1.5rem 0;
+        }
+        
+        .highlight-box p {
+            color: var(--slate-300);
+            font-style: italic;
+        }
+        
+        /* Theory cards */
+        .theory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .theory-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(180, 83, 9, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .theory-card:hover {
+            border-color: rgba(180, 83, 9, 0.4);
+        }
+        
+        .theory-number {
+            font-size: 3rem;
+            font-weight: 300;
+            color: rgba(245, 158, 11, 0.2);
+            margin-bottom: 1rem;
+        }
+        
+        .theory-title {
+            font-size: 1.2rem;
+            color: var(--amber-200);
+            margin-bottom: 0.75rem;
+        }
+        
+        .theory-description {
+            color: var(--slate-300);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .theory-details {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+        
+        .theory-details li {
+            color: var(--slate-400);
+            font-size: 0.85rem;
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .theory-details li::before {
+            content: '→';
+            color: var(--amber-600);
+        }
+        
+        .theory-source {
+            font-size: 0.75rem;
+            color: var(--slate-500);
+        }
+        
+        /* Hypothesis box */
+        .hypothesis-box {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(180, 83, 9, 0.2);
+        }
+        
+        .hypothesis-box h3 {
+            margin-top: 0;
+        }
+        
+        .hypothesis-box .quote-block {
+            margin-top: 1.5rem;
+            margin-bottom: 0;
+            background: rgba(15, 23, 42, 0.3);
+        }
+        
+        /* Prototype cards */
+        .prototype-card {
+            background: rgba(30, 41, 59, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(51, 65, 85, 0.3);
+            margin-bottom: 2rem;
+        }
+        
+        .prototype-card.featured {
+            background: linear-gradient(135deg, rgba(180, 83, 9, 0.15), rgba(15, 23, 42, 0.5));
+            border-color: rgba(180, 83, 9, 0.4);
+        }
+        
+        .prototype-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .prototype-meta {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .prototype-phase {
+            font-size: 0.75rem;
+            color: rgba(245, 158, 11, 0.6);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+        
+        .prototype-name {
+            font-size: 1.5rem;
+            color: var(--amber-100);
+            margin-bottom: 0.5rem;
+        }
+        
+        .prototype-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        
+        .status-simulable {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+        }
+        
+        .status-conceptuel {
+            background: rgba(100, 116, 139, 0.3);
+            color: var(--slate-300);
+        }
+        
+        .status-vision {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--amber-300);
+        }
+        
+        .prototype-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .prototype-description {
+            color: var(--slate-300);
+            margin-bottom: 1rem;
+        }
+        
+        .prototype-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .spec-item {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+        
+        .spec-label {
+            font-size: 0.7rem;
+            color: rgba(245, 158, 11, 0.7);
+            margin-bottom: 0.25rem;
+        }
+        
+        .spec-value {
+            font-size: 0.85rem;
+            color: var(--slate-300);
+        }
+        
+        .prototype-insight {
+            background: rgba(15, 23, 42, 0.3);
+            border-left: 2px solid rgba(180, 83, 9, 0.5);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .prototype-insight p {
+            color: var(--slate-400);
+            font-size: 0.9rem;
+            font-style: italic;
+            margin: 0;
+        }
+        
+        /* Experiment cards */
+        .experiment-card {
+            background: rgba(30, 41, 59, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(51, 65, 85, 0.3);
+            margin-bottom: 1.5rem;
+        }
+        
+        .experiment-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .experiment-level {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(180, 83, 9, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--amber-400);
+            flex-shrink: 0;
+        }
+        
+        .experiment-title-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experiment-title {
+            font-size: 1.2rem;
+            color: var(--amber-100);
+        }
+        
+        .difficulty-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+        
+        .difficulty-accessible {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+        }
+        
+        .difficulty-intermediaire {
+            background: rgba(234, 179, 8, 0.2);
+            color: #fde047;
+        }
+        
+        .difficulty-avance {
+            background: rgba(249, 115, 22, 0.2);
+            color: #fdba74;
+        }
+        
+        .difficulty-frontiere {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+        }
+        
+        .experiment-objective {
+            color: var(--slate-300);
+            margin-bottom: 1rem;
+        }
+        
+        .experiment-objective strong {
+            color: var(--amber-200);
+        }
+        
+        .experiment-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .experiment-section h4 {
+            font-size: 0.85rem;
+            color: rgba(252, 211, 77, 0.8);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+        
+        .experiment-section ol,
+        .experiment-section ul {
+            color: var(--slate-400);
+            font-size: 0.85rem;
+            padding-left: 1.25rem;
+        }
+        
+        .experiment-section li {
+            margin-bottom: 0.25rem;
+        }
+        
+        .experiment-result {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .experiment-result span:first-child {
+            color: rgba(245, 158, 11, 0.8);
+            font-size: 0.85rem;
+        }
+        
+        .experiment-result span:last-child {
+            color: var(--slate-300);
+            font-size: 0.85rem;
+        }
+        
+        /* Warning box */
+        .warning-box {
+            background: rgba(180, 83, 9, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(180, 83, 9, 0.3);
+            margin-top: 3rem;
+        }
+        
+        .warning-box h3 {
+            margin-top: 0;
+            color: var(--amber-200);
+        }
+        
+        .warning-box p {
+            color: var(--slate-300);
+            margin: 0;
+        }
+        
+        .warning-box strong {
+            color: var(--amber-100);
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--amber-600), var(--amber-700), rgba(180, 83, 9, 0.2));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -44px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid;
+        }
+        
+        .timeline-dot.current {
+            background: var(--amber-500);
+            border-color: var(--amber-400);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        
+        .timeline-dot.planned {
+            background: var(--slate-700);
+            border-color: var(--amber-600);
+        }
+        
+        .timeline-dot.future {
+            background: var(--slate-800);
+            border-color: var(--slate-600);
+        }
+        
+        .timeline-dot.vision {
+            background: var(--slate-900);
+            border-color: var(--slate-700);
+        }
+        
+        .timeline-content {
+            background: rgba(30, 41, 59, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(51, 65, 85, 0.2);
+        }
+        
+        .timeline-content.current {
+            background: rgba(180, 83, 9, 0.15);
+            border-color: rgba(180, 83, 9, 0.4);
+        }
+        
+        .timeline-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-phase {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--amber-500);
+        }
+        
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--slate-500);
+        }
+        
+        .timeline-badge {
+            padding: 0.2rem 0.5rem;
+            background: var(--amber-600);
+            color: var(--amber-100);
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            color: var(--amber-100);
+            margin-bottom: 0.75rem;
+        }
+        
+        .timeline-items {
+            list-style: none;
+        }
+        
+        .timeline-items li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: var(--slate-400);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .timeline-items li::before {
+            content: '○';
+            color: var(--slate-600);
+        }
+        
+        .timeline-content.current .timeline-items li::before {
+            color: var(--amber-500);
+        }
+        
+        /* Open source section */
+        .os-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .os-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(180, 83, 9, 0.2);
+        }
+        
+        .os-card h3 {
+            margin-top: 0;
+        }
+        
+        .os-list {
+            list-style: none;
+        }
+        
+        .os-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--slate-300);
+            margin-bottom: 0.75rem;
+        }
+        
+        .os-list li span:first-child {
+            color: var(--amber-500);
+            margin-top: 0.2rem;
+        }
+        
+        .os-list li strong {
+            color: var(--amber-100);
+        }
+        
+        /* Terminal */
+        .terminal {
+            background: var(--slate-950);
+            border-radius: 12px;
+            border: 1px solid var(--slate-800);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: var(--slate-900);
+            border-bottom: 1px solid var(--slate-800);
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .terminal-dot.red { background: rgba(239, 68, 68, 0.8); }
+        .terminal-dot.yellow { background: rgba(234, 179, 8, 0.8); }
+        .terminal-dot.green { background: rgba(34, 197, 94, 0.8); }
+        
+        .terminal-title {
+            margin-left: 1rem;
+            color: var(--slate-500);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #4ade80;
+            overflow-x: auto;
+        }
+        
+        .terminal-body pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        
+        /* Resource cards */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .resource-card {
+            display: block;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .resource-card:hover {
+            border-color: rgba(180, 83, 9, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .resource-title {
+            color: var(--amber-200);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-desc {
+            color: var(--slate-400);
+            font-size: 0.85rem;
+        }
+        
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 1.5rem;
+            border-top: 1px solid var(--slate-800);
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-brand span:first-child {
+            font-size: 1.5rem;
+            color: var(--amber-500);
+        }
+        
+        .footer-brand span:last-child {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--amber-100);
+        }
+        
+        .footer-sub {
+            color: var(--slate-500);
+            font-size: 0.85rem;
+        }
+        
+        .footer-quote {
+            text-align: right;
+        }
+        
+        .footer-quote p {
+            color: var(--slate-400);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-license {
+            color: var(--slate-600);
+            font-size: 0.75rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-brand-sub {
+                display: none;
+            }
+            
+            .hero-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .hero-icon span {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 4rem 1rem;
+            }
+            
+            .prototype-header {
+                flex-direction: column;
+            }
+            
+            .experiment-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .experiment-level {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .timeline {
+                padding-left: 40px;
+            }
+            
+            .timeline::before {
+                left: 14px;
+            }
+            
+            .timeline-dot {
+                left: -34px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-quote {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background effects -->
+    <div class="bg-effect">
+        <div class="bg-gradient"></div>
+        <div class="particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 80%; top: 10%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; top: 70%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 70%; top: 60%; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 50%; top: 30%; animation-delay: 8s;"></div>
+        <div class="particle" style="left: 20%; top: 80%; animation-delay: 10s;"></div>
+        <div class="particle" style="left: 90%; top: 40%; animation-delay: 12s;"></div>
+        <div class="particle" style="left: 40%; top: 90%; animation-delay: 14s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-brand-icon">◈</span>
+                <span class="nav-brand-text">CHRONOSCOPE</span>
+                <span class="nav-brand-sub">PROGRAMME ORPHÉE</span>
+            </div>
+            <div class="nav-links">
+                <a href="#origin" class="nav-link"><span class="nav-link-icon">◈</span> Genèse</a>
+                <a href="#theory" class="nav-link"><span class="nav-link-icon">◎</span> Fondements</a>
+                <a href="#prototypes" class="nav-link"><span class="nav-link-icon">⚙</span> Prototypes</a>
+                <a href="#experiments" class="nav-link"><span class="nav-link-icon">⚗</span> Expériences</a>
+                <a href="#roadmap" class="nav-link"><span class="nav-link-icon">◉</span> Évolutions</a>
+                <a href="#opensource" class="nav-link"><span class="nav-link-icon">⟨/⟩</span> Open Source</a>
+                <a href="https://github.com/chronoscope-project/orphee" class="nav-github" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-bg-symbol">◎</div>
+        <div class="hero-content">
+            <div class="hero-icon">
+                <span>◈</span>
+            </div>
+            <h1>CHRONOSCOPE</h1>
+            <p class="hero-subtitle">"La Fenêtre d'Orphée"</p>
+            <div class="hero-tags">
+                <span>PROGRAMME ORPHÉE</span>
+                <span>•</span>
+                <span>OPEN SOURCE</span>
+            </div>
+            <p class="hero-description">
+                Un projet de recherche ouvert explorant la possibilité théorique d'observer 
+                les empreintes informationnelles laissées par le passé dans le tissu de l'espace-temps.
+            </p>
+            <div class="hero-buttons">
+                <a href="#origin" class="btn-primary">Découvrir le projet</a>
+                <a href="#opensource" class="btn-secondary">Contribuer</a>
+            </div>
+            <div class="hero-scroll">↓</div>
+        </div>
+    </header>
+
+    <!-- Section 1: Origin -->
+    <section id="origin">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-icon">◈</div>
+                <h2 class="section-title">Genèse</h2>
+                <p class="section-subtitle">Comment naît une idée impossible</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="quote-block">
+                <p class="quote-text">
+                    "Parfois je me dis que s'il n'y a pas la dimension temps et que je marche dans la rue, 
+                    il y a des millions de personnes qui marchent au même endroit que moi."
+                </p>
+                <p class="quote-source">— La question initiale, janvier 2026</p>
+            </div>
+            
+            <p class="content-text">
+                Le projet Chronoscope est né d'une réflexion sur la nature du temps. Si l'on "aplatit" 
+                la dimension temporelle, tous les événements qui se sont produits aux mêmes coordonnées 
+                spatiales se retrouvent empilés les uns sur les autres. Des passants d'aujourd'hui, 
+                des Parisiens du XIXe siècle, peut-être un Gaulois — et dans l'autre sens, des gens 
+                qui marcheront là dans 200 ans.
+            </p>
+            
+            <p class="content-text">
+                Cette intuition rejoint ce que les physiciens appellent le <strong>bloc univers</strong> : 
+                une conception de la réalité où passé, présent et futur coexistent, où le temps 
+                ne "coule" pas mais représente simplement une dimension dans laquelle nous sommes 
+                situés à un point particulier.
+            </p>
+            
+            <div class="content-divider">
+                <div class="content-divider-line"></div>
+                <span class="content-divider-icon">◎</span>
+                <div class="content-divider-line"></div>
+            </div>
+            
+            <h3>L'analogie du train</h3>
+            
+            <div class="highlight-box">
+                <p>
+                    "Les gens sont tous dans un train en marche. Mourir, c'est descendre à une station. 
+                    Les autres continuent pour s'arrêter à leurs stations plus tard."
+                </p>
+            </div>
+            
+            <p class="content-text">
+                Cette métaphore a quelque chose d'apaisant. Elle suggère qu'on fait un bout de chemin 
+                ensemble, que la mort n'est pas un arrachement mais une descente. Et elle pose une 
+                question vertigineuse : ceux qui sont descendus attendent-ils quelque part sur le quai ? 
+                Ou est-ce que la station était la destination finale ?
+            </p>
+            
+            <h3>La question centrale</h3>
+            
+            <p class="content-text">
+                Et si l'information du passé était toujours là, inscrite dans la structure même 
+                de l'espace-temps ? Et si nous pouvions, non pas voyager dans le temps, mais 
+                simplement <em>voir</em> entre les couches de dimensions superposées ?
+            </p>
+            
+            <p class="content-text">
+                Comme une fenêtre plutôt qu'une porte. Observer sans perturber. Voir sans toucher.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 2: Theory -->
+    <section id="theory">
+        <div class="section-container section-wide">
+            <div class="section-header">
+                <div class="section-icon">◎</div>
+                <h2 class="section-title">Fondements théoriques</h2>
+                <p class="section-subtitle">La science derrière l'impossible</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <p class="content-text" style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+                Le Chronoscope n'est pas de la science-fiction pure. Il s'appuie sur des phénomènes 
+                physiques réels et des théories établies, extrapolées vers des applications spéculatives.
+            </p>
+            
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <div class="theory-number">01</div>
+                    <h4 class="theory-title">L'effet mémoire gravitationnelle</h4>
+                    <p class="theory-description">
+                        Les ondes gravitationnelles laissent une marque permanente sur l'univers, 
+                        changeant définitivement les distances entre deux points dans l'espace.
+                    </p>
+                    <ul class="theory-details">
+                        <li>Prédit par Zeldovich et Polnarev en 1974</li>
+                        <li>Déformation permanente de l'espace-temps</li>
+                        <li>LIGO et futurs détecteurs tentent de mesurer cet effet</li>
+                        <li>Amplitude ~10% du signal gravitationnel</li>
+                    </ul>
+                    <p class="theory-source">Sources: Physical Review Letters, Quanta Magazine</p>
+                </div>
+                
+                <div class="theory-card">
+                    <div class="theory-number">02</div>
+                    <h4 class="theory-title">L'effet Casimir dynamique</h4>
+                    <p class="theory-description">
+                        Les fluctuations du vide quantique peuvent être converties en photons réels 
+                        en modifiant rapidement les conditions aux limites d'un champ électromagnétique.
+                    </p>
+                    <ul class="theory-details">
+                        <li>Démontré expérimentalement en 2011</li>
+                        <li>Le 'vide' quantique est rempli de fluctuations</li>
+                        <li>On peut extraire des photons du vide</li>
+                        <li>Utilisé dans les métamatériaux supraconducteurs</li>
+                    </ul>
+                    <p class="theory-source">Sources: PNAS, Nature Physics</p>
+                </div>
+                
+                <div class="theory-card">
+                    <div class="theory-number">03</div>
+                    <h4 class="theory-title">Le bloc univers (éternalisme)</h4>
+                    <p class="theory-description">
+                        Une conception de la réalité où passé, présent et futur coexistent 
+                        simultanément, le temps étant une dimension comme les autres.
+                    </p>
+                    <ul class="theory-details">
+                        <li>Compatible avec la relativité d'Einstein</li>
+                        <li>Julian Barbour : le temps est une illusion</li>
+                        <li>L'information n'est pas 'perdue' mais située ailleurs</li>
+                        <li>Notre conscience 'traverse' le bloc</li>
+                    </ul>
+                    <p class="theory-source">Sources: The End of Time (Barbour)</p>
+                </div>
+                
+                <div class="theory-card">
+                    <div class="theory-number">04</div>
+                    <h4 class="theory-title">Symétries asymptotiques et holographie</h4>
+                    <p class="theory-description">
+                        Les symétries de l'espace-temps pourraient encoder l'information 
+                        de manière holographique sur les 'bords' de l'univers.
+                    </p>
+                    <ul class="theory-details">
+                        <li>Travaux de Strominger sur les symétries BMS</li>
+                        <li>Lien avec le paradoxe de l'information</li>
+                        <li>Information stockée de manière non-locale</li>
+                        <li>Connexion mémoire / gravitons mous</li>
+                    </ul>
+                    <p class="theory-source">Sources: Physical Review D, Cambridge</p>
+                </div>
+            </div>
+            
+            <div class="hypothesis-box">
+                <h3>L'hypothèse centrale du projet ORPHÉE</h3>
+                <p class="content-text">
+                    <strong>Conjecture :</strong> Si les événements massifs (fusions de trous noirs) 
+                    laissent une mémoire gravitationnelle détectable à l'échelle cosmique, alors les événements 
+                    locaux — une personne qui marche, une conversation, un geste — pourraient créer des 
+                    micro-perturbations qui s'inscrivent dans le tissu local de l'espace-temps.
+                </p>
+                <p class="content-text">
+                    Ces empreintes ne seraient pas gravitationnelles au sens classique, mais 
+                    <em>informationnelles</em> — une sorte de "poussière quantique" 
+                    laissée par chaque interaction matière-énergie.
+                </p>
+                <div class="quote-block">
+                    <p class="quote-text">
+                        "L'espace garde une trace. La question n'est pas si l'information existe, 
+                        mais si nous pouvons développer la technologie pour la lire."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Prototypes -->
+    <section id="prototypes">
+        <div class="section-container section-wide">
+            <div class="section-header">
+                <div class="section-icon">⚙</div>
+                <h2 class="section-title">Prototypes imaginés</h2>
+                <p class="section-subtitle">Du concept à l'objet</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="prototype-card">
+                <div class="prototype-header">
+                    <div class="prototype-meta">
+                        <div class="prototype-phase">PROTOTYPE ALPHA</div>
+                        <h3 class="prototype-name">Le Murmure</h3>
+                        <span class="prototype-status status-conceptuel">Conceptuel</span>
+                    </div>
+                    <div class="prototype-content">
+                        <p class="prototype-description">
+                            Détecte uniquement la présence d'empreintes temporelles, sans les visualiser.
+                        </p>
+                        <div class="prototype-specs">
+                            <div class="spec-item">
+                                <div class="spec-label">Forme</div>
+                                <div class="spec-value">Cylindre taille bouteille de vin</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Composants</div>
+                                <div class="spec-value">Hélium superfluide, réseau SQUID</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Fonction</div>
+                                <div class="spec-value">S'allume selon 'densité historique'</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Limitation</div>
+                                <div class="spec-value">Pas d'image, juste intensité</div>
+                            </div>
+                        </div>
+                        <div class="prototype-insight">
+                            <p>On découvre que certains lieux 'résonnent' plus que d'autres. Les cimetières sont silencieux. Les marchés, les escaliers, les seuils de portes sont intenses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="prototype-card">
+                <div class="prototype-header">
+                    <div class="prototype-meta">
+                        <div class="prototype-phase">PROTOTYPE BETA</div>
+                        <h3 class="prototype-name">L'Écho</h3>
+                        <span class="prototype-status status-simulable">Simulable</span>
+                    </div>
+                    <div class="prototype-content">
+                        <p class="prototype-description">
+                            Capte des fragments sonores du passé — pas des mots distincts, mais des textures.
+                        </p>
+                        <div class="prototype-specs">
+                            <div class="spec-item">
+                                <div class="spec-label">Forme</div>
+                                <div class="spec-value">Sphère de 30 cm</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Composants</div>
+                                <div class="spec-value">Niobate de lithium, métamatériaux</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Fonction</div>
+                                <div class="spec-value">Textures: foule, conversation, silence</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Limitation</div>
+                                <div class="spec-value">Impossible de cibler une époque</div>
+                            </div>
+                        </div>
+                        <div class="prototype-insight">
+                            <p>Les premiers 'sons du passé' sont flous, comme entendus à travers un mur épais et de l'eau. Mais ils sont là.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="prototype-card">
+                <div class="prototype-header">
+                    <div class="prototype-meta">
+                        <div class="prototype-phase">PROTOTYPE GAMMA</div>
+                        <h3 class="prototype-name">La Fenêtre</h3>
+                        <span class="prototype-status status-conceptuel">Conceptuel</span>
+                    </div>
+                    <div class="prototype-content">
+                        <p class="prototype-description">
+                            Produit des images pour la première fois — des taches floues, puis des silhouettes.
+                        </p>
+                        <div class="prototype-specs">
+                            <div class="spec-item">
+                                <div class="spec-label">Forme</div>
+                                <div class="spec-value">Cadre 40 × 30 cm</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Composants</div>
+                                <div class="spec-value">Graphène, électrodes supraconductrices</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Fonction</div>
+                                <div class="spec-value">Membrane vibre, module laser, image</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Limitation</div>
+                                <div class="spec-value">2-3 sec avant décohérence</div>
+                            </div>
+                        </div>
+                        <div class="prototype-insight">
+                            <p>Les premières images sont des gradients de lumière. Puis des formes humaines émergent. Des mouvements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="prototype-card featured">
+                <div class="prototype-header">
+                    <div class="prototype-meta">
+                        <div class="prototype-phase">MARK I</div>
+                        <h3 class="prototype-name">Le Chronoscope</h3>
+                        <span class="prototype-status status-vision">Vision</span>
+                    </div>
+                    <div class="prototype-content">
+                        <p class="prototype-description">
+                            Appareil portatif avec molette de profondeur temporelle et module d'ancrage.
+                        </p>
+                        <div class="prototype-specs">
+                            <div class="spec-item">
+                                <div class="spec-label">Forme</div>
+                                <div class="spec-value">Grosse jumelle, titane noir mat</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Cœur</div>
+                                <div class="spec-value">Silicium hyperpurifié à 0.01 K</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Ancrage</div>
+                                <div class="spec-value">Fragment de l'objet-pont</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Interface</div>
+                                <div class="spec-value">Bandeau neural pour stabilisation</div>
+                            </div>
+                        </div>
+                        <div class="prototype-insight">
+                            <p>L'image se stabilise dans les 'poches de clarté' — époques où beaucoup d'événements similaires se sont produits. Pas une vidéo nette, plutôt une aquarelle en mouvement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Experiments -->
+    <section id="experiments">
+        <div class="section-container section-wide">
+            <div class="section-header">
+                <div class="section-icon">⚗</div>
+                <h2 class="section-title">Expérimentations</h2>
+                <p class="section-subtitle">Valider l'impossible, étape par étape</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <p class="content-text" style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+                Avant de construire un Chronoscope, il faut valider les hypothèses sous-jacentes. 
+                Voici les expériences proposées, des plus accessibles aux plus ambitieuses.
+            </p>
+            
+            <div class="experiment-card">
+                <div class="experiment-header">
+                    <div class="experiment-level">1</div>
+                    <div>
+                        <div class="experiment-title-row">
+                            <h4 class="experiment-title">Détection de résonance en environnement répétitif</h4>
+                            <span class="difficulty-badge difficulty-accessible">Accessible</span>
+                        </div>
+                        <p class="experiment-objective">
+                            <strong>Objectif:</strong> Vérifier si des 'échos' d'événements répétitifs sont détectables
+                        </p>
+                    </div>
+                </div>
+                <div class="experiment-details">
+                    <div class="experiment-section">
+                        <h4>Protocole</h4>
+                        <ol>
+                            <li>Placer un interféromètre dans une pièce</li>
+                            <li>Faire fonctionner un métronome plusieurs semaines</li>
+                            <li>Arrêter et mesurer les perturbations résiduelles</li>
+                            <li>Comparer avec une pièce témoin</li>
+                        </ol>
+                    </div>
+                    <div class="experiment-section">
+                        <h4>Équipement requis</h4>
+                        <ul>
+                            <li>• Interféromètre laser</li>
+                            <li>• Chambre isolée</li>
+                            <li>• Système d'acquisition longue durée</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experiment-result">
+                    <span>Résultat attendu: </span>
+                    <span>Micro-perturbations corrélées à la fréquence du métronome, plusieurs heures après l'arrêt</span>
+                </div>
+            </div>
+            
+            <div class="experiment-card">
+                <div class="experiment-header">
+                    <div class="experiment-level">2</div>
+                    <div>
+                        <div class="experiment-title-row">
+                            <h4 class="experiment-title">Mesure de densité informationnelle locale</h4>
+                            <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                        </div>
+                        <p class="experiment-objective">
+                            <strong>Objectif:</strong> Quantifier la 'charge historique' de différents lieux
+                        </p>
+                    </div>
+                </div>
+                <div class="experiment-details">
+                    <div class="experiment-section">
+                        <h4>Protocole</h4>
+                        <ol>
+                            <li>Développer un capteur basé sur l'effet Casimir</li>
+                            <li>Mesurer dans des lieux de densité variable</li>
+                            <li>Comparer: marché ancien vs parking récent</li>
+                            <li>Analyser les variations statistiques</li>
+                        </ol>
+                    </div>
+                    <div class="experiment-section">
+                        <h4>Équipement requis</h4>
+                        <ul>
+                            <li>• Capteur Casimir miniaturisé</li>
+                            <li>• GPS haute précision</li>
+                            <li>• Station mobile de mesure</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experiment-result">
+                    <span>Résultat attendu: </span>
+                    <span>Corrélation positive entre ancienneté/activité d'un lieu et amplitude des fluctuations</span>
+                </div>
+            </div>
+            
+            <div class="experiment-card">
+                <div class="experiment-header">
+                    <div class="experiment-level">3</div>
+                    <div>
+                        <div class="experiment-title-row">
+                            <h4 class="experiment-title">Extraction de photons mémoriels par résonance</h4>
+                            <span class="difficulty-badge difficulty-avance">Avancé</span>
+                        </div>
+                        <p class="experiment-objective">
+                            <strong>Objectif:</strong> Générer des photons à partir d'empreintes temporelles
+                        </p>
+                    </div>
+                </div>
+                <div class="experiment-details">
+                    <div class="experiment-section">
+                        <h4>Protocole</h4>
+                        <ol>
+                            <li>Construire un résonateur Casimir accordable</li>
+                            <li>Placer dans un lieu à forte 'charge'</li>
+                            <li>Scanner différentes fréquences</li>
+                            <li>Analyser le spectre des photons générés</li>
+                        </ol>
+                    </div>
+                    <div class="experiment-section">
+                        <h4>Équipement requis</h4>
+                        <ul>
+                            <li>• Métamatériaux supraconducteurs</li>
+                            <li>• Système cryogénique</li>
+                            <li>• Spectromètre ultrasensible</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experiment-result">
+                    <span>Résultat attendu: </span>
+                    <span>Photons avec caractéristiques spectrales différant selon le lieu</span>
+                </div>
+            </div>
+            
+            <div class="experiment-card">
+                <div class="experiment-header">
+                    <div class="experiment-level">4</div>
+                    <div>
+                        <div class="experiment-title-row">
+                            <h4 class="experiment-title">Reconstruction d'image par cohérence quantique</h4>
+                            <span class="difficulty-badge difficulty-frontiere">Frontière</span>
+                        </div>
+                        <p class="experiment-objective">
+                            <strong>Objectif:</strong> Assembler les photons mémoriels en une image cohérente
+                        </p>
+                    </div>
+                </div>
+                <div class="experiment-details">
+                    <div class="experiment-section">
+                        <h4>Protocole</h4>
+                        <ol>
+                            <li>Algorithme de tomographie quantique</li>
+                            <li>Intrication pour cohérence</li>
+                            <li>Tester sur empreintes artificielles</li>
+                            <li>Progresser vers empreintes naturelles</li>
+                        </ol>
+                    </div>
+                    <div class="experiment-section">
+                        <h4>Équipement requis</h4>
+                        <ul>
+                            <li>• Ordinateur quantique</li>
+                            <li>• Source de photons intriqués</li>
+                            <li>• Réseau de détecteurs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experiment-result">
+                    <span>Résultat attendu: </span>
+                    <span>Reconstruction d'images floues mais reconnaissables d'événements passés</span>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <h3>⚠️ Note importante</h3>
+                <p>
+                    Ces expériences sont <strong>hautement spéculatives</strong>. Les niveaux 3 et 4 requièrent 
+                    des technologies qui n'existent pas encore. L'objectif du projet ORPHÉE n'est pas de 
+                    promettre des résultats, mais d'explorer rigoureusement une hypothèse fascinante et 
+                    de documenter le chemin, qu'il mène quelque part ou non.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Roadmap -->
+    <section id="roadmap">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-icon">◉</div>
+                <h2 class="section-title">Évolutions futures</h2>
+                <p class="section-subtitle">La feuille de route vers l'impossible</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot current"></div>
+                    <div class="timeline-content current">
+                        <div class="timeline-meta">
+                            <span class="timeline-phase">Phase 1</span>
+                            <span class="timeline-date">2025-2026</span>
+                            <span class="timeline-badge">En cours</span>
+                        </div>
+                        <h4 class="timeline-title">Simulation et modélisation</h4>
+                        <ul class="timeline-items">
+                            <li>Prototype logiciel du Chronoscope (✓ Complété)</li>
+                            <li>Modélisation mathématique des empreintes</li>
+                            <li>Simulation des interactions vide / matière</li>
+                            <li>Publication du cadre théorique</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot planned"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-meta">
+                            <span class="timeline-phase">Phase 2</span>
+                            <span class="timeline-date">2026-2028</span>
+                        </div>
+                        <h4 class="timeline-title">Validation expérimentale préliminaire</h4>
+                        <ul class="timeline-items">
+                            <li>Construction du prototype 'Murmure'</li>
+                            <li>Expériences de résonance contrôlée</li>
+                            <li>Collaboration avec laboratoires</li>
+                            <li>Mesures dans des lieux historiques</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot future"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-meta">
+                            <span class="timeline-phase">Phase 3</span>
+                            <span class="timeline-date">2028-2032</span>
+                        </div>
+                        <h4 class="timeline-title">Développement des capteurs avancés</h4>
+                        <ul class="timeline-items">
+                            <li>Prototype 'Écho' — textures sonores</li>
+                            <li>Miniaturisation cryogénique</li>
+                            <li>Métamatériaux spécialisés</li>
+                            <li>Tests de génération de photons</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot vision"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-meta">
+                            <span class="timeline-phase">Phase 4</span>
+                            <span class="timeline-date">2032+</span>
+                        </div>
+                        <h4 class="timeline-title">Vers le Chronoscope Mark I</h4>
+                        <ul class="timeline-items">
+                            <li>Prototype 'Fenêtre' — premières images</li>
+                            <li>Système d'ancrage et navigation</li>
+                            <li>Interface utilisateur et stabilisation</li>
+                            <li>Premier Chronoscope fonctionnel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="content-text" style="text-align: center; max-width: 600px; margin: 3rem auto 0; font-style: italic; color: var(--slate-400);">
+                "Le chemin est l'objectif. Si nous découvrons que l'hypothèse est fausse, 
+                nous aurons appris quelque chose de profond sur la nature du temps. 
+                Si elle est vraie... nous aurons ouvert une fenêtre sur l'éternité."
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 6: Open Source -->
+    <section id="opensource">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-icon">⟨/⟩</div>
+                <h2 class="section-title">Open Source</h2>
+                <p class="section-subtitle">Un projet ouvert à tous</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="os-grid">
+                <div class="os-card">
+                    <h3>Pourquoi open source ?</h3>
+                    <ul class="os-list">
+                        <li>
+                            <span>◈</span>
+                            <span><strong>Transparence</strong> — Hypothèses extraordinaires requièrent vérification ouverte</span>
+                        </li>
+                        <li>
+                            <span>◈</span>
+                            <span><strong>Collaboration</strong> — Physique, ingénierie, philosophie doivent dialoguer</span>
+                        </li>
+                        <li>
+                            <span>◈</span>
+                            <span><strong>Éthique</strong> — Une telle technologie ne peut appartenir à personne</span>
+                        </li>
+                        <li>
+                            <span>◈</span>
+                            <span><strong>Pérennité</strong> — Le projet doit survivre à ses créateurs</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="os-card">
+                    <h3>Comment contribuer ?</h3>
+                    <ul class="os-list">
+                        <li>
+                            <span>◎</span>
+                            <span><strong>Physiciens</strong> — Critiquer et affiner le cadre théorique</span>
+                        </li>
+                        <li>
+                            <span>◎</span>
+                            <span><strong>Ingénieurs</strong> — Concevoir et tester les prototypes</span>
+                        </li>
+                        <li>
+                            <span>◎</span>
+                            <span><strong>Développeurs</strong> — Améliorer simulations et interface</span>
+                        </li>
+                        <li>
+                            <span>◎</span>
+                            <span><strong>Historiens</strong> — Identifier les lieux de test</span>
+                        </li>
+                        <li>
+                            <span>◎</span>
+                            <span><strong>Philosophes</strong> — Explorer les implications éthiques</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dot red"></div>
+                    <div class="terminal-dot yellow"></div>
+                    <div class="terminal-dot green"></div>
+                    <span class="terminal-title">terminal</span>
+                </div>
+                <div class="terminal-body">
+<pre># Cloner le repository
+git clone https://github.com/chronoscope-project/orphee.git
+
+# Installer les dépendances
+cd orphee && pip install -r requirements.txt
+
+# Lancer le prototype logiciel
+python chronoscope/app.py
+
+# Lancer les tests
+pytest tests/
+
+# Contribuer
+git checkout -b feature/votre-contribution
+# ... vos modifications ...
+git push origin feature/votre-contribution</pre>
+                </div>
+            </div>
+            
+            <div class="resource-grid">
+                <a href="https://github.com/chronoscope-project/orphee" class="resource-card" target="_blank">
+                    <div class="resource-icon">📦</div>
+                    <h4 class="resource-title">Repository principal</h4>
+                    <p class="resource-desc">Code source, documentation, et prototypes</p>
+                </a>
+                
+                <a href="https://github.com/chronoscope-project/theory" class="resource-card" target="_blank">
+                    <div class="resource-icon">📄</div>
+                    <h4 class="resource-title">Publications</h4>
+                    <p class="resource-desc">Papers, notes théoriques, références</p>
+                </a>
+                
+                <a href="https://discord.gg/chronoscope" class="resource-card" target="_blank">
+                    <div class="resource-icon">💬</div>
+                    <h4 class="resource-title">Communauté</h4>
+                    <p class="resource-desc">Discussions, questions, collaboration</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">
+                    <span>◈</span>
+                    <span>CHRONOSCOPE</span>
+                </div>
+                <p class="footer-sub">Programme ORPHÉE — Open Research Project for Historical Echo Exploration</p>
+            </div>
+            <div class="footer-quote">
+                <p>"L'image se dissout si l'émotion est trop intense.<br>Respirez. Le passé est patient."</p>
+                <p class="footer-license">Licence MIT — 2025-présent</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
