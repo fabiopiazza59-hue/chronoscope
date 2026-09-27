@@ -10,21 +10,27 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/chronoscope-project/orphee/blob/main/LICENSE">
+  <strong><em>Machines can now invent the past. We are trying to read it.</em></strong>
+</p>
+
+<p align="center">
+  <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-amber.svg" alt="License: MIT"/>
   </a>
-  <a href="https://github.com/chronoscope-project/orphee/stargazers">
-    <img src="https://img.shields.io/github/stars/chronoscope-project/orphee?style=social" alt="Stars"/>
+  <a href="https://github.com/fabiopiazza59-hue/chronoscope/stargazers">
+    <img src="https://img.shields.io/github/stars/fabiopiazza59-hue/chronoscope?style=social" alt="Stars"/>
   </a>
-  <a href="https://discord.gg/chronoscope">
-    <img src="https://img.shields.io/badge/Discord-Join%20us-7289da" alt="Discord"/>
+  <a href="https://github.com/fabiopiazza59-hue/chronoscope/issues">
+    <img src="https://img.shields.io/badge/Discuss-GitHub%20issues-7289da" alt="Discuss on GitHub issues"/>
   </a>
 </p>
 
 <p align="center">
   <a href="#-about">About</a> •
+  <a href="#-we-already-read-the-past">Traces</a> •
   <a href="#-theoretical-foundations">Theory</a> •
-  <a href="#-prototypes">Prototypes</a> •
+  <a href="#-the-echo--web-simulator">Simulator</a> •
+  <a href="#-the-orphée-charter">Charter</a> •
   <a href="#-quick-start">Quick Start</a> •
   <a href="#-contributing">Contributing</a>
 </p>
@@ -33,9 +39,9 @@
 
 ## 📜 About
 
-The **Chronoscope** project explores a fascinating hypothesis: what if past events leave informational imprints in the fabric of spacetime, and we could develop technology to observe them?
+The **Chronoscope** project explores a hypothesis: what if past events leave informational imprints in the world, and we could one day develop technology to observe them?
 
-This isn't pure science fiction. The project builds upon real physical phenomena—gravitational memory effect, dynamical Casimir effect, the block universe concept—and extrapolates them toward speculative applications.
+It builds on real physics: the gravitational memory effect, the dynamical Casimir effect, the block universe, and information scrambling. It then extrapolates openly toward speculative applications, and labels every step with how speculative it is.
 
 > *"Space keeps a trace. The question is not whether the information exists, but whether we can develop the technology to read it."*
 
@@ -43,40 +49,99 @@ This isn't pure science fiction. The project builds upon real physical phenomena
 
 The project was born from a simple reflection:
 
-> "Sometimes I think that if there were no time dimension and I'm walking down the street, there are millions of people walking in the same place as me."
+> "Sometimes I think that if there were no time dimension, as I walk down the street, millions of people would be walking in the very same place as me."
 
-This intuition connects to what physicists call the **block universe**: a conception of reality where past, present, and future coexist simultaneously.
+This intuition connects to what physicists call the **block universe**, a picture of reality in which past, present and future coexist.
+
+### Why now? (2026 manifesto)
+
+In 2025–2026, two movements are crossing.
+
+- **The readers of the past have never been so powerful.**
+  - A scroll carbonised by Vesuvius was read in full without being unrolled (June 2026).
+  - An Antarctic ice core brought up air 1.2 million years old (January 2025).
+  - JWST mapped in 3D the light echo of a star that exploded centuries ago (January 2025).
+- **Manufacturing a past that never existed has never been so easy.**
+  - In January 2026, the Dachau, Buchenwald and Neuengamme memorials asked platforms to remove AI-generated fake "archive photos".
+  - Since 2 August 2026, the EU AI Act has required synthetic content to be labelled.
+
+ORPHÉE stands exactly on that border. Our simulator makes images and says so. Our research is interested only in real traces. **In the age of synthetic images, the authentic trace becomes the most precious thing there is.**
+
+## 🕰️ We Already Read the Past
+
+*Every breakthrough came from a new reader, not a new trace.*
+
+| Trace | How far back | Read in | How |
+|-------|-------------|---------|-----|
+| Phonautogram of "Au clair de la lune" | 1860 | 2008 | Soot trace on paper, turned into sound by optical scanning |
+| Herculaneum scrolls | AD 79 | 2025–2026 | X-ray tomography + machine-learning ink detection |
+| Cassiopeia A light echo | ~340 years | 2025 | Light bounced off interstellar dust, mapped in 3D by JWST |
+| Tycho's supernova (1572) | 454 years | 2008 | Spectrum taken via a light echo |
+| Solar storm of 774 | 1,252 years | 2012 | Carbon-14 spike in tree rings |
+| Denisova Cave sediments | ~300,000 years | 2021 | Human DNA read in dirt, without a single bone |
+| Little Dome C ice (Beyond EPICA) | ~1.2 million years | 2025 | Air bubbles trapped in a 2,800 m ice core |
+| Kap København eDNA | ~2 million years | 2022 | Environmental DNA of a vanished ecosystem |
+| GW150914 | ~1.3 billion years | 2015 | Gravitational waves from a black-hole merger |
+
+Three lessons shape the 2026 narrative:
+
+1. **The trace waits for its reader.** The 1860 phonautograph could not play sound back. It took 148 years and a new instrument to hear it.
+2. **Reading means calibrating.** In 2008 the phonautogram was played at double speed and heard as a girl's voice. In 2009 the speed was corrected: it is a man, probably Scott de Martinville himself, singing slowly.
+3. **Scrambled is not erased, but only a controlled system can be rewound.** Google's "Quantum Echoes" (2025) refocused information scrambled across 65 qubits by reversing the evolution. A street is not a quantum processor, and that is ORPHÉE's real wall.
+
+The sources for every item are in [theory/signals-2026.md](theory/signals-2026.md).
 
 ## 🧬 Theoretical Foundations
 
-### 1. Gravitational Memory Effect
-Gravitational waves leave a **permanent** deformation of spacetime. Predicted in 1974, this effect is currently being searched for by LIGO and will be a major target for future detectors (LISA, Einstein Telescope).
+Five pillars, each with its **2026 status**.
 
-```
-"Gravitational waves leave a permanent mark on the Universe, 
-forever changing the distances between two points in space."
-— Physical Review Letters
-```
+| # | Pillar | What it says | Status (2026) |
+|---|--------|--------------|---------------|
+| 1 | **Gravitational memory** | A gravitational wave leaves a *permanent* deformation of spacetime. | **Still undetected.** Stacking 258 mergers gave 0.26 ± 4 (GR predicts 1). About 2,000 detections are needed (O5/O6, 5–10 years). LISA (~2035) could see it in a single merger. |
+| 2 | **Dynamical Casimir effect** | Real photons can be pulled out of vacuum fluctuations by fast-changing boundaries. | No major new observation since 2011. The technology is maturing: the 2025 Nobel went to superconducting quantum circuits, and a first all-optical photonic time crystal came in 2026. |
+| 3 | **Block universe** | Past, present and future coexist. | An interpretation, not a measurement. We use it as a frame, not as evidence. |
+| 4 | **Horizons, holography & information** | Spacetime may store information on its boundaries ("soft hair"). | GW250114 (2025) confirmed Hawking's area theorem. Physicists remain split: in a 2026 survey, 54% say information is preserved and 19% say it is lost. |
+| 5 | **Scrambling & quantum echoes** *(new)* | Scrambled information can be refocused by reversing the dynamics. | Demonstrated on 65 qubits (Nature, 2025), but only with total control. This is now objection #1. |
 
-### 2. Dynamical Casimir Effect
-The quantum "vacuum" isn't empty—it's filled with fluctuations. In 2011, researchers demonstrated that we can extract **real photons** from the vacuum by rapidly changing a system's boundary conditions.
+### The ORPHÉE Hypothesis (2026 revision)
 
-### 3. Block Universe (Eternalism)
-A conception of reality where past, present, and future **coexist**. Time doesn't "flow"—our consciousness traverses a 4D structure where all information is always there.
+> The universe keeps archives at every scale. That much is established. The ORPHÉE hypothesis is narrower, and riskier: **ordinary, local events would also leave a physical imprint, persistent and in principle readable, with no medium designed to record it.** Its main enemy has a name: irreversible scrambling in a world we do not control.
 
-### 4. Asymptotic Symmetries & Holography
-Spacetime symmetries might encode information holographically on the "edges" of the universe, connected to the black hole information paradox.
+### Speculation Scale
 
-### The ORPHÉE Hypothesis
+| Established | Debated | Speculative | Fiction (for now) | Never reproduced |
+|---|---|---|---|---|
+| Gravitational waves (390 detections) | Block universe | Local imprints of human events (ORPHÉE) | Chronoscope Mark I | Pottery "recordings" (Woodbridge, 1969) |
+| Memory effect predicted by GR | Black-hole information preservation | "Memorial photons" by resonance | Reconstructed images of the past | |
+| Dynamical Casimir effect (2011) | Holography, soft hair | | Neural stabilisation headband | |
 
-> **Conjecture**: If cosmic events (black hole mergers) leave gravitational memory, then local events might create **informational** micro-perturbations in the local fabric of spacetime.
+See [theory/foundations.md](theory/foundations.md) and [theory/hypothesis.md](theory/hypothesis.md).
+
+## 🎛️ The Echo — Web Simulator
+
+The project website (`index.html`, mirrored in `website/`) now includes an in-browser version of the Beta prototype, **"L'Écho"**. It is a direct port of the Python visual processor (`chronoscope/processors/visual.py`):
+
+- **Temporal depth slider** (0–6, continuous) with the same pipeline as the Python code: blur → sepia → saturation → contrast → grain → vignette → fade.
+- **Presences:** people and vehicles from each epoch (a 2CV, an interwar tram, a Belle Époque fiacre…) fade in at the same spot. Millions of people walking where you stand.
+- **Procedural soundscapes (Web Audio):** traffic, bells, hooves, a musette waltz, a barrel organ playing "Au clair de la lune" (the song recorded in 1860). The low-pass and reverb follow `sound.py`.
+- **Coherence mechanic:** move too fast and the signal tears. *"Breathe. The past is patient."*
+- **Sources:** the default procedurally drawn Paris street, your own image (drag and drop), or your camera. Everything is processed locally, and nothing leaves the device.
+- **Honest export:** every saved image carries a visible *"artistic simulation, not a real observation"* label.
+
+The site also features:
+- an interactive "memory field" hero
+- a log-scale chart of how far back we already read
+- an animated gravitational-memory demo
+- a filterable 2025–2026 news feed
+- a dual roadmap
+- a full French/English toggle
 
 ## ⚙️ Prototypes
 
 | Phase | Name | Description | Status |
 |-------|------|-------------|--------|
 | Alpha | **The Murmur** | Detects presence of imprints (intensity only) | Conceptual |
-| Beta | **The Echo** | Captures sonic textures from the past | Simulable ✓ |
+| Beta | **The Echo** | Captures sonic textures from the past | Simulable ✓ (Python + web) |
 | Gamma | **The Window** | Produces blurry images | Conceptual |
 | Mark I | **The Chronoscope** | Complete portable device | Vision |
 
@@ -99,14 +164,33 @@ Spacetime symmetries might encode information holographically on the "edges" of 
 
 ## 🧪 Proposed Experiments
 
-| Level | Experiment | Difficulty |
-|-------|------------|------------|
-| 1 | Resonance detection in repetitive environments | Accessible |
-| 2 | Local informational density measurement | Intermediate |
-| 3 | Memorial photon extraction by resonance | Advanced |
-| 4 | Image reconstruction via quantum coherence | Frontier |
+| Level | Experiment | Difficulty | What already exists |
+|-------|------------|------------|---------------------|
+| 1 | Resonance detection in repetitive environments | Accessible | LIGO-class interferometry; AI noise control (2025) |
+| 2 | Local informational density measurement | Intermediate | Environmental DNA as a chemical control |
+| 3 | Memorial photon extraction by resonance | Advanced | Dynamical Casimir effect in superconducting circuits (2011) |
+| 4 | Image reconstruction via quantum coherence | Frontier | Quantum echoes in fully controlled processors (2025) |
 
-See [theory/experiments.md](theory/experiments.md) for detailed protocols.
+**Commitments:**
+- pre-registered protocols
+- null results first
+- open data
+- blind controls
+
+See [theory/experiments.md](theory/experiments.md).
+
+## 🧭 The ORPHÉE Charter
+
+*To look without taking.* Six principles that already apply to the simulators:
+
+1. **A simulation is not an observation.** Every output is labelled.
+2. **Calibrate before you believe.** Remember the 1860 phonautogram.
+3. **Look, don't bring back.** No griefbots, no recreated voices.
+4. **The past has a right to privacy.** No targeting of individuals, and recent layers are excluded.
+5. **Publish the failures.** Null results come first.
+6. **No one owns the past.** MIT licence, no patents.
+
+Read the full charter: [ETHICS.md](ETHICS.md).
 
 ## 🚀 Quick Start
 
@@ -119,8 +203,8 @@ See [theory/experiments.md](theory/experiments.md) for detailed protocols.
 
 ```bash
 # Clone the repository
-git clone https://github.com/chronoscope-project/orphee.git
-cd orphee
+git clone https://github.com/fabiopiazza59-hue/chronoscope.git
+cd chronoscope
 
 # Create virtual environment (recommended)
 python -m venv venv
@@ -139,64 +223,90 @@ python -m chronoscope.app
 # Open http://localhost:7860 in your browser
 ```
 
+### Run the Tests
+
+```bash
+pytest
+```
+
 ### Run the Website Locally
 
 ```bash
-cd website
 python -m http.server 8000
 # Open http://localhost:8000
 ```
 
+The website is a single self-contained HTML file with no build step. `website/index.html` is an identical copy of the root `index.html`; keep them in sync. The camera source needs `https://` or `localhost`.
+
 ## 📁 Project Structure
 
 ```
-orphee/
-├── chronoscope/              # Main application
-│   ├── __init__.py
+chronoscope/
+├── index.html                # Project website (single file, FR/EN) — incl. the Echo simulator
+├── website/                  # Mirror of the website (index.html + assets/)
+├── chronoscope/              # Python package
 │   ├── app.py               # Gradio interface
-│   ├── epochs.py            # Temporal epoch definitions
+│   ├── epochs.py            # Temporal epoch definitions (mirrored in the web simulator)
 │   └── processors/
-│       ├── __init__.py
 │       ├── visual.py        # Visual transformations
 │       └── sound.py         # Soundscape generation
-├── website/                  # Project website
-│   ├── index.html           # Main page
-│   └── assets/
-├── theory/                   # Theoretical documentation
-│   ├── foundations.md       # Scientific foundations
+├── theory/
+│   ├── foundations.md       # Scientific foundations (with 2026 status)
+│   ├── hypothesis.md        # The ORPHÉE hypothesis (2026 revision)
 │   ├── experiments.md       # Experimental protocols
-│   ├── hypothesis.md        # The ORPHÉE hypothesis
+│   ├── signals-2026.md      # Sourced digest of 2025–2026 developments
 │   └── references.bib       # Bibliography
-├── examples/                 # Usage examples
-│   └── basic_usage.py
-├── tests/                    # Test suite
-│   └── test_processors.py
-├── .github/                  # GitHub configuration
-│   ├── ISSUE_TEMPLATE/
-│   └── CONTRIBUTING.md
+├── ETHICS.md                 # The ORPHÉE charter
+├── examples/basic_usage.py
+├── tests/test_processors.py
+├── assets/logo.svg
 ├── requirements.txt
-├── LICENSE
-└── README.md
+└── LICENSE
 ```
 
 ## 🗺️ Roadmap
 
-- [x] **Phase 1** (2025-2026) — Software prototype, modeling
-- [ ] **Phase 2** (2026-2028) — Preliminary experimental validation
-- [ ] **Phase 3** (2028-2032) — Advanced sensor development
-- [ ] **Phase 4** (2032+) — Toward Chronoscope Mark I
+**Programme ORPHÉE**
+
+- [ ] **Phase 1** (2025–2026) — Simulation and modelling
+  - [x] Python software prototype
+  - [x] Web simulator "The Echo" (September 2026)
+  - [x] Narrative, speculation scale and ethics charter revised (September 2026)
+  - [ ] Mathematical modelling of imprints *(in progress)*
+  - [ ] Public theory note, open to critique
+- [ ] **Phase 2** (2026–2028) — Preliminary experimental validation: pre-registered experiment 1, "Murmur" prototype, lab partnerships
+- [ ] **Phase 3** (2028–2032) — Advanced sensors *(only if phase 2 yields a signal)*
+- [ ] **Phase 4** (2032+) — Toward Chronoscope Mark I. Otherwise, publish why: that is a result too.
+
+**The physics calendar we depend on**
+
+| When | Milestone |
+|------|-----------|
+| Nov 2026 | LIGO interim observing run (~6 months) |
+| Dec 2026 | Einstein Telescope site bids (Sardinia, Meuse-Rhine, Lusatia) |
+| H2 2027 | Einstein Telescope site decision (~€2B) |
+| TBD | LIGO-Virgo-KAGRA O5 run |
+| 5–10 years | ~2,000 detections: first statistical measurement of memory |
+| ~2035 | LISA launch (memory in a single merger) |
+| 2040s | Cosmic Explorer |
+
+*Fragile:*
+- The US 2026 budget request proposed closing one LIGO site, and Congress refused.
+- The 2027 request asks again for a steep cut.
+- The instruments that read the past are never guaranteed.
 
 ## 🤝 Contributing
 
 We welcome contributors from all backgrounds:
 
-| Role | Contribution |
-|------|--------------|
-| **Physicists** | Critique and refine the theoretical framework |
-| **Engineers** | Design and test prototypes |
-| **Developers** | Improve simulations and interface |
-| **Historians** | Identify relevant test locations |
-| **Philosophers** | Explore ethical implications |
+| Role | Where to start |
+|------|----------------|
+| **Physicists** | Challenge a rating on the speculation scale |
+| **Engineers** | Design the experiment 1 protocol |
+| **Developers** | Add an epoch, a sound or a city to the Echo |
+| **Historians** | Propose well-documented test sites |
+| **Philosophers** | Amend the charter |
+| **Translators** | Bring the website to other languages |
 
 ### How to Contribute
 
@@ -206,31 +316,34 @@ We welcome contributors from all backgrounds:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Questions, critiques and proposals are welcome in [GitHub issues](https://github.com/fabiopiazza59-hue/chronoscope/issues).
 
 ## 📚 References
 
 ### Scientific Papers
 
 - Zeldovich, Y. B., & Polnarev, A. G. (1974). *Radiation of gravitational waves by a cluster of superdense stars*
-- Goncharov, B., et al. (2024). *Gravitational memory and spacetime symmetries*
+- Braginsky, V. B., & Thorne, K. S. (1987). *Gravitational-wave bursts with memory and experimental prospects*
 - Wilson, C. M., et al. (2011). *Observation of the dynamical Casimir effect in a superconducting circuit*
 - Strominger, A., & Zhiboedov, A. (2016). *Gravitational Memory, BMS Supertranslations and Soft Theorems*
+- LIGO-Virgo-KAGRA (2025). *GW250114: Testing Hawking's Area Law and the Kerr Nature of Black Holes*
+- Google Quantum AI (2025). *Observation of constructive interference at the edge of quantum ergodicity* ("Quantum Echoes")
+- Mitman, K., Isi, M., & Farr, W. M. (2026). *Constraining Gravitational Wave Memory with Hierarchical Inference*
 
 ### Books
 
 - Barbour, J. (1999). *The End of Time: The Next Revolution in Physics*
 - Hawking, S. & Ellis, G. (1973). *The Large Scale Structure of Space-Time*
 
-See [theory/references.bib](theory/references.bib) for the complete bibliography.
+See [theory/references.bib](theory/references.bib) for the complete bibliography and [theory/signals-2026.md](theory/signals-2026.md) for recent developments with sources.
 
 ## ⚠️ Disclaimer
 
-This project is **highly speculative**. The hypotheses presented have not been experimentally validated and may prove incorrect. The goal is not to promise results, but to rigorously explore a fascinating idea and document the journey.
+This project is **highly speculative**. The hypotheses presented have not been experimentally validated and may prove incorrect. The goal is not to promise results, but to explore a fascinating idea rigorously and document the journey. Everything the simulators produce is an artistic simulation, not an observation.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -241,5 +354,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <p align="center">
   <strong>Programme ORPHÉE</strong><br/>
   Open Research Project for Historical Echo Exploration<br/>
-  2025–present
+  2025–present · narrative revised September 2026
 </p>

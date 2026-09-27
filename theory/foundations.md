@@ -2,9 +2,11 @@
 
 ## Overview
 
-The Chronoscope project is built upon four pillars of modern physics, each of which provides a piece of the theoretical puzzle for temporal observation.
+The Chronoscope project is built upon five pillars of modern physics, each of which provides a piece of the theoretical puzzle for temporal observation. Each pillar now carries a **Status (2026)** note saying what has changed recently, including when it does not go our way.
 
 > **Important**: This document presents speculative extrapolations from established physics. The core phenomena are real and experimentally verified; the proposed applications are theoretical.
+
+> **Context (2026 revision)**: The universe demonstrably keeps records. We already read the past in light echoes, ice cores, sediment DNA, carbonised papyri and gravitational waves (see [signals-2026.md](signals-2026.md)). The ORPHÉE question is narrower: do *ordinary, local* events leave a physical imprint that is persistent and, in principle, readable?
 
 ---
 
@@ -40,11 +42,13 @@ When gravitational waves pass through a region of spacetime, they don't just tem
 }
 ```
 
-### Detection Status
+### Detection Status (2026)
 
-- **LIGO/Virgo**: Actively searching, not yet detected
-- **Expected sensitivity**: Einstein Telescope, LISA (2030s)
-- **Signal amplitude**: ~10% of gravitational wave strain
+- **Not yet detected.** In May 2026, stacking 258 binary-black-hole mergers from GWTC-5.0 gave a memory amplitude of 0.26 (+4.09/−4.08). General relativity predicts 1, so the result fits the theory but also fits zero ([arXiv:2605.27500](https://arxiv.org/abs/2605.27500)).
+- **About 2,000 detections** are needed to tell memory apart from zero. That means the O5/O6 runs, 5–10 years away. There were 390 confirmed detections as of May 2026.
+- **Pulsar timing arrays** (NANOGrav, EPTA/PPTA) have found no memory bursts, only upper limits (2025).
+- **LISA** (ESA, launch targeted for ~2035) should see memory in a *single* massive-black-hole merger. **Cosmic Explorer** (2040s) could see it in tens of mergers per year.
+- **Signal amplitude**: a small fraction of the peak oscillatory strain, which is itself ~10⁻²¹ for typical LIGO events.
 
 ### ORPHÉE Extrapolation
 
@@ -81,6 +85,12 @@ The quantum vacuum is not empty—it seethes with virtual particle-antiparticle 
 - **Mechanism**: Rapidly oscillating mirror in a cavity
 - **Implementation**: Superconducting circuits with tunable boundary
 - **Achievement**: Created real photons from vacuum fluctuations
+
+### Status (2026)
+
+- **No major new observation** of the dynamical Casimir effect since 2011. Recent work is reviews and theory (e.g. Dodonov, "Dynamical Casimir Effect: 55 Years Later", *Physics* 2025).
+- The enabling technology is maturing. The **2025 Nobel Prize in Physics** (Clarke, Devoret, Martinis) went to the discovery of macroscopic quantum tunnelling and energy quantisation in superconducting circuits, the same family as the SQUID used as a "moving mirror" in 2011.
+- **Time-modulated media**: time reflection was observed in metamaterials (*Nature Physics*, 2023), and a first all-optical photonic time crystal was reported in 2026 (*Nature*). These are close cousins of the effect.
 
 ### ORPHÉE Extrapolation
 
@@ -125,6 +135,10 @@ If the block universe is correct:
 - Information isn't destroyed, just located at different temporal coordinates
 - "Viewing the past" is conceptually no stranger than viewing a distant location
 
+### Status (2026)
+
+Still an **interpretation, not a measurement**. No experiment can today decide between eternalism and presentism. We use it as a philosophical frame, not as evidence.
+
 ### ORPHÉE Extrapolation
 
 The Chronoscope wouldn't "travel in time"—it would provide a window between different temporal coordinates of the block, allowing observation without interaction.
@@ -163,15 +177,45 @@ Recent work by Strominger and collaborators has revealed deep connections betwee
 
 Information about events may be encoded **holographically** on the boundary of spacetime regions. The universe may keep a complete record of everything that happens, stored in subtle symmetry structures.
 
+### Status (2026)
+
+- **GW250114** (PRL, Sept 2025) is the clearest gravitational-wave signal so far (signal-to-noise ratio ~80). It confirms Hawking's area theorem: in a merger, total horizon area, and with it the black hole's entropy or information capacity, grows (~240,000 → ~400,000 km²).
+- The information question stays **open**. In a 2026 survey of 1,675 physicists, 54% think information is preserved (in the radiation or a remnant) and 19% think it is lost ([APS Physics](https://physics.aps.org/articles/v19/34)).
+
 ### ORPHÉE Extrapolation
 
 If information is preserved holographically, the challenge isn't whether past information exists, but how to access and decode it from the geometric structure of spacetime.
 
 ---
 
+## 5. Scrambling and Quantum Echoes (added 2026)
+
+### The Phenomenon
+
+When information spreads through a complex quantum system, it is not destroyed but **scrambled** across many degrees of freedom. If the dynamics can be exactly reversed, the information refocuses, like an echo. Out-of-time-order correlators (OTOCs) measure this.
+
+### Scientific Basis
+
+- **Google Quantum AI, "Quantum Echoes"** (*Nature* 646, 825–830, Oct 2025). On the Willow processor, the team evolved 65 qubits forward, perturbed one "butterfly" qubit, reversed the evolution exactly and measured the returning echo. Google estimates the task would take ~13,000× longer on the Frontier supercomputer.
+
+### Core Insight
+
+*Scrambled is not erased*, but refocusing requires **complete control** of the system's dynamics.
+
+### ORPHÉE Implication
+
+This is both the best and the worst news for the hypothesis.
+
+- **Best:** physics does allow scrambled information to be recovered in principle.
+- **Worst:** in an open, uncontrolled environment such as a street, a room or a market, reversal is out of reach, and decoherence spreads information into the whole environment.
+
+This is now the project's **objection #1**. Any credible ORPHÉE mechanism must say how it escapes it.
+
+---
+
 ## Synthesis: The ORPHÉE Hypothesis
 
-Combining these four foundations, we propose:
+Combining these foundations, we propose:
 
 ### Core Conjecture
 
@@ -188,10 +232,11 @@ Combining these four foundations, we propose:
 
 | Challenge | Current Technology Gap |
 |-----------|----------------------|
-| Sensitivity | Need 10^-50 m (LIGO: 10^-21 m) |
+| Sensitivity | Need ~10^-50 m (LIGO: ~10^-18 m displacement, i.e. strain ~10^-21) |
 | Cryogenics | Need millikelvin portable systems |
 | Temporal tuning | No mechanism yet discovered |
-| Coherence | Decoherence destroys information |
+| Coherence | Decoherence scrambles information into the environment |
+| Reversibility | Refocusing scrambled information requires full control (Quantum Echoes, 2025) |
 
 ---
 

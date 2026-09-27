@@ -116,7 +116,7 @@ class TestEpochs:
         epochs = list_epochs()
         assert len(epochs) == 7
         assert "Présent" in epochs[0]
-        assert "2020-2025" in epochs[0]
+        assert "2020-2026" in epochs[0]
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

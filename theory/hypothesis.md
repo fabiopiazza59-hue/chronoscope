@@ -6,6 +6,27 @@
 
 ---
 
+## 2026 Revision
+
+> **The universe keeps archives at every scale. That much is established. The ORPHÉE hypothesis is narrower, and riskier: *ordinary, local* events would also leave a physical imprint, persistent and in principle readable, with no medium designed to record it.**
+
+Why we sharpened the statement:
+
+- **We already read the past.** Light echoes (JWST, Cassiopeia A, 2025), 1.2-million-year-old air in Antarctic ice (2025), sediment and air-filter DNA, and a Herculaneum scroll read in full without being opened (2026) all show this. Every breakthrough came from a new *reader*, not a new trace. See [signals-2026.md](signals-2026.md).
+- **The main obstacle has a name.** Google's "Quantum Echoes" (2025) shows that scrambled information can be refocused, but only in a fully controlled system. Irreversible scrambling in an open world is now objection #1.
+- **Synthetic pasts are cheap.** In an age of AI-generated "archive" images, the authentic trace is what matters. ORPHÉE's simulations are labelled as such, and the research concerns real traces only. See [../ETHICS.md](../ETHICS.md).
+
+### Speculation Scale
+
+| Established | Debated | Speculative | Fiction (for now) | Never reproduced |
+|---|---|---|---|---|
+| Gravitational waves (390 detections) | Block universe | Local imprints of human events (ORPHÉE) | Chronoscope Mark I | Pottery "recordings" (Woodbridge, 1969) |
+| Memory effect predicted by GR (not yet measured) | Black-hole information preservation | "Memorial photons" by resonance | Reconstructed images of the past | |
+| Dynamical Casimir effect (2011) | Holography, soft hair | | Neural stabilisation headband | |
+| Light echoes, ancient DNA, ice cores, papyri read | | | | |
+
+---
+
 ## Motivation
 
 The hypothesis arose from a simple observation:
@@ -107,6 +128,8 @@ The hypothesis would be **falsified** if:
 2. A complete theory of quantum gravity proves that local information is thermalized irreversibly
 
 3. All apparent correlations are explained by conventional environmental factors
+
+4. It is shown that any local imprint is irreversibly scrambled into the environment on timescales far shorter than those of interest, so that it cannot even in principle be refocused
 
 ---
 
