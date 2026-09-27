@@ -63,7 +63,7 @@ ORPHÉE stands on that border. The simulator makes images and says so. The resea
 
 ## What we changed because of all this
 
-- **Narrative:** "Machines can now invent the past. We are trying to read it." The Chronoscope is framed as the next *reader* in a long line of readers, not a magic device.
+- **Narrative:** "Machines have learned to invent the past. We are learning to read it." The Chronoscope is framed as the next *reader* in a long line of readers, not a magic device.
 - **A fifth pillar:** scrambling and quantum echoes. It is both the best and the worst news for the hypothesis.
 - **A speculation scale:** established, debated, speculative, fiction (for now), never reproduced.
 - **An ethics charter:** [ETHICS.md](../ETHICS.md).
