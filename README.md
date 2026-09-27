@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <strong><em>Machines can now invent the past. We are trying to read it.</em></strong>
+  <strong><em>Machines have learned to invent the past. We are learning to read it.</em></strong>
 </p>
 
 <p align="center">
