@@ -109,11 +109,15 @@ Five pillars, each with its **2026 status**.
 
 ### Speculation Scale
 
-| Established | Debated | Speculative | Fiction (for now) | Never reproduced |
-|---|---|---|---|---|
-| Gravitational waves (390 detections) | Block universe | Local imprints of human events (ORPHÉE) | Chronoscope Mark I | Pottery "recordings" (Woodbridge, 1969) |
-| Memory effect predicted by GR | Black-hole information preservation | "Memorial photons" by resonance | Reconstructed images of the past | |
-| Dynamical Casimir effect (2011) | Holography, soft hair | | Neural stabilisation headband | |
+*So that we never confuse what we know, what we debate and what we imagine.*
+
+| Level | What sits there |
+|---|---|
+| **Established** | Gravitational waves (390 detections since 2015) · the memory effect as predicted by general relativity (not yet measured) · the dynamical Casimir effect (observed in 2011) · light echoes, ancient DNA, ice cores and papyri already read |
+| **Debated** | The block universe · black-hole information preservation · holography and "soft hair" |
+| **Speculative** | Local imprints of human events (the ORPHÉE hypothesis) · "memorial photons" extracted by resonance |
+| **Fiction (for now)** | Chronoscope Mark I · reconstructed images of the past · neural stabilisation headband |
+| **Never reproduced** | Pottery "recordings" (Woodbridge, 1969): the idea that objects etch ambient sound has never been convincingly reproduced. We cite it so as not to repeat the mistake. |
 
 See [theory/foundations.md](theory/foundations.md) and [theory/hypothesis.md](theory/hypothesis.md).
 
@@ -181,16 +185,32 @@ See [theory/experiments.md](theory/experiments.md).
 
 ## 🧭 The ORPHÉE Charter
 
-*To look without taking.* Six principles that already apply to the simulators:
+*Look without taking.* Orpheus lost Eurydice because he looked back. Any technology that looks at the past should learn from him. These six principles apply from today, our simulators included.
 
-1. **A simulation is not an observation.** Every output is labelled.
-2. **Calibrate before you believe.** Remember the 1860 phonautogram.
-3. **Look, don't bring back.** No griefbots, no recreated voices.
-4. **The past has a right to privacy.** No targeting of individuals, and recent layers are excluded.
-5. **Publish the failures.** Null results come first.
-6. **No one owns the past.** MIT licence, no patents.
+**I. A simulation is not an observation.**
+Everything ORPHÉE produces today is simulated, and says so. Every image exported from the Echo carries an "artistic simulation" label. We will never present a synthetic image as a historical document.
+*Context: open letter from memorials against fake Holocaust images (January 2026); Article 50 of the EU AI Act, applicable since 2 August 2026.*
 
-Read the full charter: [ETHICS.md](ETHICS.md).
+**II. Calibrate before you believe.**
+Every reading will state its calibration, uncertainties and assumptions, and will remain open to revision. A misread trace can even change the identity of the person speaking.
+*Context: the 1860 phonautogram, heard in 2008 as a girl's voice, was in fact a man singing slowly (2009 correction).*
+
+**III. Look, don't bring back.**
+We will not make the dead speak: no avatars, no "griefbots", no recreated voices. Observing the past is not resurrecting it.
+*Context: Cambridge researchers' call (2024) for safeguards on "deadbots"; New York State law (December 2025) requiring heirs' consent for digital replicas of the deceased.*
+
+**IV. The past has a right to privacy.**
+No observation will ever target a person. Recent layers, whose witnesses are still alive, are excluded by default. The collective before the individual; the place before the person.
+*Precautionary principle: should this technology ever work, it would become the ultimate surveillance tool.*
+
+**V. Publish the failures.**
+Pre-registered protocols, open data, null results published first. We would rather be cleanly refuted than wrongly believed.
+*A cautionary tale we own: the pottery "recordings" (1969), never reproduced.*
+
+**VI. No one owns the past.**
+MIT-licensed code, no patents, no exclusivity. A technology able to see the past can belong to no one, and the project must outlive its creators.
+
+The charter is open: propose an amendment through a [GitHub issue](https://github.com/fabiopiazza59-hue/chronoscope/issues). It is also kept as a standalone file: [ETHICS.md](ETHICS.md).
 
 ## 🚀 Quick Start
 
